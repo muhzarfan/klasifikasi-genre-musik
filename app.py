@@ -197,22 +197,22 @@ if uploaded_file is not None:
         if predicted_genre_result is not None:
             confidence_threshold = 0.50
             max_prob = np.max(all_probs)
-
+            
             if max_prob < confidence_threshold:
                 st.write(f"**Genre yang Diprediksi:** **<span style='font-size: 24px; color: #FFA500;'>Genre tidak dapat dipastikan</span>**", unsafe_allow_html=True)
-                st.info(f"Model kurang yakin dengan prediksinya (keyakinan tertinggi: {max_prob*100:.2f}%). Input mungkin di luar genre yang dilatih atau bukan musik.")
+                st.info(f"Model kurang yakin dengan prediksinya. Input mungkin di luar genre yang dilatih atau bukan musik.")
             else:
                 st.write(f"**Genre yang Diprediksi (Paling Mungkin):** **<span style='font-size: 24px; color: #4CAF50;'>{predicted_genre_result}</span>**", unsafe_allow_html=True)
-
-            st.markdown("---")
-            st.subheader("Top 5 Persentase Prediksi:")
-
-            top_indices = np.argsort(all_probs)[::-1]
-
-            for i in range(min(5, len(genre_mapping))):
-                genre_name = genre_mapping[top_indices[i]]
-                probability = all_probs[top_indices[i]] * 100
-                st.write(f"- {genre_name}: **{probability:.2f}%**")
+        
+                st.markdown("---")
+                st.subheader("Top 5 Persentase Prediksi:")
+        
+                top_indices = np.argsort(all_probs)[::-1]
+        
+                for i in range(min(5, len(genre_mapping))):
+                    genre_name = genre_mapping[top_indices[i]]
+                    probability = all_probs[top_indices[i]] * 100
+                    st.write(f"- {genre_name.capitalize()}: **{probability:.2f}%**")
 
         os.unlink(tmp_file_path)
 
