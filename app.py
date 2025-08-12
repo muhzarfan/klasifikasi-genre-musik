@@ -195,7 +195,7 @@ if uploaded_file is not None:
             )
 
         if predicted_genre_result is not None:
-            confidence_threshold = 0.20
+            confidence_threshold = 0.50
             max_prob = np.max(all_probs)
 
             if max_prob < confidence_threshold:
