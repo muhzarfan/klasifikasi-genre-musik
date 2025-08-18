@@ -61,8 +61,8 @@ def load_ml_model(model_path):
         return None
 
 def preprocess_and_predict_genre_streamlit(model, audio_file_path, mapping_genres,
-                                             sample_rate, n_mels, n_fft, hop_length,
-                                             samples_per_segment_train, num_frames_per_segment_train):
+                                           sample_rate, n_mels, n_fft, hop_length,
+                                           samples_per_segment_train, num_frames_per_segment_train):
     """Memproses file audio, mengekstrak Mel-spectrogram, dan memprediksi genre untuk aplikasi Streamlit."""
 
     if model is None:
@@ -90,13 +90,6 @@ def preprocess_and_predict_genre_streamlit(model, audio_file_path, mapping_genre
             segment_mel_spec_extracted = np.pad(segment_mel_spec_extracted, ((0, 0), (0, padding_needed)), mode='constant')
         elif segment_mel_spec_extracted.shape[1] > num_frames_per_segment_train:
             segment_mel_spec_extracted = segment_mel_spec_extracted[:, :num_frames_per_segment_train]
-
-        if segment_mel_spec_extracted.shape[1] != num_frames_per_segment_train:
-             if segment_mel_spec_extracted.shape[1] < num_frames_per_segment_train:
-                 padding_needed = num_frames_per_segment_train - segment_mel_spec_extracted.shape[1]
-                 segment_mel_spec_extracted = np.pad(segment_mel_spec_extracted, ((0, 0), (0, padding_needed)), mode='constant')
-             elif segment_mel_spec_extracted.shape[1] > num_frames_per_segment_train:
-                 segment_mel_spec_extracted = segment_mel_spec_extracted[:, :num_frames_per_segment_train]
 
         mel_spec_input = segment_mel_spec_extracted[np.newaxis, ..., np.newaxis]
 
@@ -127,7 +120,6 @@ Website ini adalah sistem implementasi menggunakan Streamlit untuk melakukan kla
 <br>
 """, unsafe_allow_html=True)
 
-# Hapus panggilan load_genre_mapping dan sesuaikan logika
 with st.spinner("Memuat model yang diperlukan..."):
     model = load_ml_model(MODEL_PATH)
     genre_mapping = GENRE_MAPPING
@@ -185,7 +177,7 @@ if uploaded_file is not None:
             predicted_genre_result, all_probs = preprocess_and_predict_genre_streamlit(
                 model,
                 tmp_file_path,
-                genre_mapping, 
+                genre_mapping,
                 SAMPLE_RATE,
                 N_MELS,
                 N_FFT,
@@ -203,16 +195,16 @@ if uploaded_file is not None:
                 st.info(f"Model kurang yakin dengan prediksinya. Input mungkin di luar genre yang dilatih atau bukan musik.")
             else:
                 st.write(f"**Genre yang Diprediksi (Paling Mungkin):** **<span style='font-size: 24px; color: #4CAF50;'>{predicted_genre_result}</span>**", unsafe_allow_html=True)
-        
-                st.markdown("---")
-                st.subheader("Top 5 Persentase Prediksi:")
-        
-                top_indices = np.argsort(all_probs)[::-1]
-        
-                for i in range(min(5, len(genre_mapping))):
-                    genre_name = genre_mapping[top_indices[i]]
-                    probability = all_probs[top_indices[i]] * 100
-                    st.write(f"- {genre_name.capitalize()}: **{probability:.2f}%**")
+            
+            st.markdown("---")
+            st.subheader("Top 5 Persentase Prediksi:")
+            
+            top_indices = np.argsort(all_probs)[::-1]
+            
+            for i in range(min(5, len(genre_mapping))):
+                genre_name = genre_mapping[top_indices[i]]
+                probability = all_probs[top_indices[i]] * 100
+                st.write(f"- {genre_name.capitalize()}: **{probability:.2f}%**")
 
         os.unlink(tmp_file_path)
 
