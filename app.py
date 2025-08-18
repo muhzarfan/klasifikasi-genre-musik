@@ -158,6 +158,7 @@ st.markdown("""
 2. Tunggu beberapa saat hingga proses analisis audio selesai.
 3. Hasil prediksi genre akan ditampilkan di bawah, dilengkapi dengan persentase keyakinan model.
 """)
+st.warning("CATATAN: Model mungkin akan melakukan kesalahan prediksi atau kurang yakin dengan prediksi.")
 
 st.markdown("---")
 
