@@ -116,7 +116,7 @@ st.title("🎶 Klasifikasi Genre Musik")
 st.markdown("""
 **Peneliti:** Muhammad Zharfan Alfanso (51421100)
 <br><br>
-Website ini adalah sistem implementasi menggunakan Streamlit untuk melakukan klasifikasi genre musik pada file audio menggunakan model Keras yang dibuat dengan menggabungkan dua algoritma Deep Learning yaitu Convolutional Neural Network (CNN) dan Bidirectional Long Short Term Memory(BiLSTM) yang memanfaatkan fitur Mel-spectrogram.
+Website ini adalah sistem implementasi menggunakan Streamlit untuk melakukan klasifikasi genre musik pada file audio menggunakan model Keras yang dibuat dengan menggabungkan dua algoritma Deep Learning yaitu Convolutional Neural Network (CNN) dan Bidirectional Long Short Term Memory (BiLSTM) yang memanfaatkan fitur Mel-spectrogram.
 <br>
 """, unsafe_allow_html=True)
 
