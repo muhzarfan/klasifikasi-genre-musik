@@ -131,3 +131,5 @@ klasifikasi-genre-musik/
 3. Model yang telah dilatih akan tersimpan otomatis ke dalam folder **`model/`**.  
 
 ---
+
+Jika ada pertanyaan silakan email: zarfanalfa@gmail.com
