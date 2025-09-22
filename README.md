@@ -1,7 +1,7 @@
 # 🎵 Aplikasi Streamlit untuk Klasifikasi Genre Musik
 
 Repository ini adalah bagian dari proyek penelitian skripsi oleh **Muhammad Zharfan Alfanso (51421100)**.  
-Model dibangun menggunakan Keras Python dengan algoritma *Convolutional Neural Network (CNN)* dan *Bidirectional Long Short-Term Memory (BiLSTM)* untuk melakukan klasifikasi genre musik berdasarkan fitur audio **Mel-Spectrogram** terhadap 12 genre musik, yaitu:
+Model dibangun menggunakan Tensorflow Python dengan algoritma *Convolutional Neural Network (CNN)* dan *Bidirectional Long Short-Term Memory (BiLSTM)* untuk melakukan klasifikasi genre musik berdasarkan fitur audio **Mel-Spectrogram** terhadap 12 genre musik, yaitu:
 
 <table>
   <tr>
